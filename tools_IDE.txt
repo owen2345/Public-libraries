@@ -1,0 +1,10 @@
+PHP: php designer | phpstorm
+rails: Ruby mine
+
+
+beyond compare for ftp connections
+filezilla for ftp or sftp
+winscp for ssh connections
+
+
+firebug for web inspect

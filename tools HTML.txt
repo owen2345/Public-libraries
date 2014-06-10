@@ -1,0 +1,42 @@
+PLUGINS:
+=============================
+jquery.js
+backbone.js
+fancybox3.js => modalbox
+acetree => tree of folder/files
+nodejs
+coffeescript
+
+ENCODING:
+=============================
+//always use one of these for php the other platforms this is include for default
+lesscss.php => located in folder HTML (<link src='less.php?file=style.less'>)
+sass.php => located in folder HTML (<link src='less.php?file=style.less'>)
+
+
+
+FRAMEWORKS:
+=============================
+bootstrap 3
+960grid
+
+
+
+VALIDATIONS
+=============================
+jquery.validate.js => inline validations
+
+STRUCTURE
+=============================
+- css
+- documents
+- images
+- javascripts
+
+
+IE FIXES:
+=============================
+<!--[if lt IE 9]>
+	<script src="js/html5.js"></script>  => html5 entities support
+    <script src="js/css3-mediaqueries.js"></script> => css3 media queries support
+<![endif]-->

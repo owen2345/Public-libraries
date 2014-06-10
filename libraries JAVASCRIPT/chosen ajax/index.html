@@ -1,0 +1,10 @@
+<link rel="stylesheet" type="text/css" href="chosen.css">
+<script type="text/javascript" src="chosen.jquery.min.js"></script>
+<script type="text/javascript" src="chosen.ajax.js"></script>
+<script type="text/javascript">
+	jQuery(function()
+	{
+		$("#group_users").chosen_ajax();
+	});
+</script>
+<select id="group_users" multiple="" name="users[]" data-selected="19264,22030" data-extra='extra ajax param' data-case="users" class="required" data-placeholder="Selecciona un usuario"></select>
