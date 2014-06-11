@@ -6,6 +6,8 @@
 <!--[if lt IE 9]>
     <script src="javascripts/super_uploader/ajax_form.js"></script>
 <![endif]-->
+<h2>This is a demo for file uploader (dropzone) with support on ie7+ </h2>
+<h5><i>You need to build your file uploader.php in php or any other language</i></h5>
 <div id="supe_dropzone">
     <div class="panel_dropzone"></div>
 </div>
@@ -14,6 +16,6 @@
     jQuery(function()
     {
         $(".dz-hidden-input:file").remove();
-        $("#supe_dropzone").superDropzone({url: "upload.php", maxFiles: 1});
+        $("#supe_dropzone").superDropzone({url: "uploader.php", maxFiles: 1});
     });
 </script>

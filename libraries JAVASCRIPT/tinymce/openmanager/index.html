@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Super Dropzone</title>
+        <script type="text/javascript" src="../../tiny_mce_popup.js" ></script>
+        <link rel="stylesheet" media="screen" href="assets/super_uploader/dropzone.css">
+        <script src="assets/jquery.1.10.js"></script>
+        <script src="assets/super_uploader/jquery-browser.js"></script>
+        <script src="assets/super_uploader/ajax_form.js"></script>
+        <script src="assets/super_uploader/dropzone.js"></script>
+        <script src="assets/super_uploader/super_dropzone.js"></script>
+        <script>
+            if(typeof tinyMCEPopup !== 'undefined')
+            {//for debug
+                tinyMCEPopup.requireLangPack();
+            }
+            jQuery(function($)
+            {
+                var formats = [];
+                switch(urlGetParam(window.location.href, "type"))
+                {
+                    case "image":
+                        formats = ["png", "jpg", "gif", "jpeg", "bmp"];
+                        break;
+                    case "media":
+                        formats = ["swf", "mp3", "mp4", "flv", "avi"];
+                        break;
+                    default: //file
+                        formats = ["png", "jpg", "gif", "jpeg", "bmp", "swf", "mp3", "mp4", "flv", "avi", "zip", "rar", "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx"]
+                        break;
+                }
+                $(".super_dropzone").superDropzone({onSuccessFile: fileSuccess, message: urlGetParam(window.location.href, "message"), url: urlGetParam(window.location.href, "upload_path"), maxFilesize: urlGetParam(window.location.href, "max_size"), maxFiles: 1, extensions: formats });
+            });
+
+            function fileSuccess(files)
+            {
+                ClosePluginPopup(files[0].filename_full);
+            }
+            function urlGetParam(url, name){ name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]"); var regexS = "[\\?&]"+name+"=([^&#]*)"; var regex = new RegExp( regexS ); var results = regex.exec(url); if( results == null ) return ""; else return decodeURI(results[1]); }
+            function ClosePluginPopup (strReturnURL) {
+                var win = tinyMCEPopup.getWindowArg("window");                                          // insert information now
+                if (!win)
+                    tinyMCE.activeEditor.execCommand('mceInsertContent', false, strReturnURL);
+                else
+                {
+                    win.document.getElementById(tinyMCEPopup.getWindowArg("input")).value = strReturnURL;
+                    if (typeof(win.ImageDialog) != "undefined")                                             // are we an image browser
+                    {
+                        if (win.ImageDialog.getImageData) win.ImageDialog.getImageData();                   // we are, so update image dimensions and preview if necessary
+                        if (win.ImageDialog.showPreviewImage) win.ImageDialog.showPreviewImage(strReturnURL);
+                    }
+                }
+                tinyMCEPopup.close();	                                                                    // close popup window
+            }
+        </script>
+    </head>
+    <body>
+        <div class="super_dropzone"><div class="panel_dropzone"></div></div>
+    </body>
+</html>

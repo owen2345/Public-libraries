@@ -20,7 +20,7 @@ $.fn.chosen_ajax = function(params)
         this.each(function()
         {
             var selector = $(this);
-            var settings = { url: "", method: "get", width: "300px", ajax: {} }
+            var settings = { url: "elements.html", method: "get", width: "300px", ajax: {} }
             settings = $.extend(settings, params);
             settings.ajax = $.extend({selected: selector.data("selected"), 'case': selector.data("case"), extra: selector.data("extra")}, settings.ajax);
             $.ajax({
