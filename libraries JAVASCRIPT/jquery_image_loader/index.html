@@ -5,14 +5,14 @@
     {
         var image_to_load =$("<img src='"+url+"'>");
         var loading = $(".loading");
-        image_to_load.load_img({start: function(img)
+        image_to_load.load_img({start: function(e, img)
         {
             loading.show().html("0%");
         }, progress: function(e, img)
         {
             console.log(Math.round(e.loaded / e.total * 100)+"%");
             loading.html(Math.round(e.loaded / e.total * 100)+"%");
-        }, complete: function(){
+        }, complete: function(e, img){
             $("body").append(image_to_load);
             loading.html("complete").hide();
         }});

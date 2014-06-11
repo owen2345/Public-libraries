@@ -1,6 +1,6 @@
-This is a jquery plugin that add two new methods to load image (start, progress)
+This is a jquery plugin that add new methods to load image (start, progress, complete, error)
  With these new functions you can capture the progress status and show its progress bar
- PARAMS: complete: function(img){}, progress: function(e, img){}, start: function(img){}
+ PARAMS: complete: function(e, img){}, progress: function(e, img){}, start: function(e, img){}, error: function(e, img){}
  Support: ie8+, ff, chrome(desktop/mobile), safari (desktop/mobile)
 
  Example:
@@ -12,14 +12,14 @@ This is a jquery plugin that add two new methods to load image (start, progress)
      {
          var image_to_load =$("<img src='"+url+"'>");
          var loading = $(".loading");
-         image_to_load.load_img({start: function(img)
+         image_to_load.load_img({start: function(e, img)
          {
              loading.show().html("0%");
          }, progress: function(e, img)
          {
              console.log(Math.round(e.loaded / e.total * 100)+"%");
              loading.html(Math.round(e.loaded / e.total * 100)+"%");
-         }, complete: function(){
+         }, complete: function(e, img){
              $("body").append(image_to_load);
              loading.html("complete").hide();
          }});
