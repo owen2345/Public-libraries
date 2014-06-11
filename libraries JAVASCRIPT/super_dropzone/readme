@@ -1,0 +1,49 @@
+This is a jquery plugin that include iExplorer7,8,9,+ supports using the dropzone plugin
+
+// this is a extension of dropzone plugin with ie8,9 supports
+// Note: for iexplorer support, don't use this within a form
+// Note: the file size is not validating for iExplorer, you can add this validation on your server side
+// get all uploaded files using: $(".super_dropzone").triggerHandler("get_uploaded_files"); this return an array of files
+// custom event to start upload all files added to dashboard: $(".super_dropzone").trigger("startProcessQueue");
+// "extensions" was added instead of mimetypes, you can use: ["gif", "jpg", "pdf", "..."]
+// PARAMS:
+            extensions: ["jpg", "png", "rar", "zip", "pdf"],
+            url: "my_uploader.php", // url to file uploader
+            clickable:true,
+            method: "post",
+            maxFiles:2,
+            uploadMultiple: false,
+            parallelUploads:3,
+            maxFilesize:2,
+            addRemoveLinks:true,
+            paramName:'files[]',
+            forceFallback:false,
+            createImageThumbnails:true,
+            maxThumbnailFilesize:1,
+            autoProcessQueue:true,
+            message: "Drop here your files or click here",
+            onSuccessFile: function(files){}, //called when a file was uploaded => fix: use files[0] to access to file uploaded
+
+Example:
+
+<script src="javascripts/jquery.1.10.js"></script>
+<script src="javascripts/super_uploader/jquery-browser.js"></script>
+<script src="javascripts/super_uploader/dropzone.js"></script>
+<script src="javascripts/super_uploader/super_dropzone.js"></script>
+<link rel="stylesheet" href="stylesheets/super_uploader/dropzone.css">
+<!--[if lt IE 9]>
+    <script src="javascripts/super_uploader/ajax_form.js"></script>
+<![endif]-->
+<h2>This is a demo for file uploader (dropzone) with support on ie7+ </h2>
+<h5><i>You need to build your file uploader.php in php or any other language</i></h5>
+<div id="supe_dropzone">
+    <div class="panel_dropzone"></div>
+</div>
+
+<script>
+    jQuery(function()
+    {
+        $(".dz-hidden-input:file").remove();
+        $("#supe_dropzone").superDropzone({url: "uploader.php", maxFiles: 1, onSuccessFile: function(files){ console.log(files[0]) }});
+    });
+</script>

@@ -1,0 +1,27 @@
+This is a demo using super_uploader as plugin for tinymce
+test: try to add a image where you can see a icon to browser images where yuo can see super_uploader plugin integrated
+
+config:
+add:
+    plugins : "openmanager"
+    file_browser_callback: "openmanager"
+    open_manager_upload_path: "root to my_uploader.php"
+
+
+Example:
+
+<h2>This is a demo using super_dropzone plugin as plugin uploader for tinymce editor</h2>
+<h5><i>You need to build your file uploader.php in php or any other language</i></h5>
+<script src="jquery.1.10.js"></script>
+<script src="tiny_mce.js"></script>
+<script>
+    jQuery(function($)
+    {
+        tinymce.init({
+            selector:'textarea',
+            plugins : "openmanager",
+            file_browser_callback: "openmanager", open_manager_upload_path: window.location.href.replace("index.html", "")+"uploader.php"
+        });
+    });
+</script>
+<textarea name="editor"></textarea>

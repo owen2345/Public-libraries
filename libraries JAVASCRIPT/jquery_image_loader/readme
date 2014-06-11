@@ -1,0 +1,35 @@
+This is a jquery plugin that add two new methods to load image (start, progress)
+ With these new functions you can capture the progress status and show its progress bar
+ PARAMS: complete: function(img){}, progress: function(e, img){}, start: function(img){}
+ Support: ie8+, ff, chrome(desktop/mobile), safari (desktop/mobile)
+
+ Example:
+
+ <script src="jquery.1.10.js"></script>
+ <script src="image_loader.js"></script>
+ <script>
+     function load_img(url)
+     {
+         var image_to_load =$("<img src='"+url+"'>");
+         var loading = $(".loading");
+         image_to_load.load_img({start: function(img)
+         {
+             loading.show().html("0%");
+         }, progress: function(e, img)
+         {
+             console.log(Math.round(e.loaded / e.total * 100)+"%");
+             loading.html(Math.round(e.loaded / e.total * 100)+"%");
+         }, complete: function(){
+             $("body").append(image_to_load);
+             loading.html("complete").hide();
+         }});
+     }
+
+     jQuery(function($)
+     {
+         load_img('Screen Shot 2014-05-08 at 11.58.42 AM.png')
+     });
+ </script>
+ <body>
+     <div class='loading'></div>
+ </body>

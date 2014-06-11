@@ -6,6 +6,7 @@ jQuery(function()
     // for ie support, don't use this within a form
     // get all uploaded files: $(".super_dropzone").triggerHandler("get_uploaded_files");
     // custom event: $(".super_dropzone").trigger("startProcessQueue");
+    // for callback action you can use: onSuccessFile = function(files){console.log(files[0])} // where files is a json of a unique file
     $.fn.superDropzone = function(settings)
     {
         var panel = $(this);

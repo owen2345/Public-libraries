@@ -1,0 +1,50 @@
+Facebook small javascript api
+
+params:
+ * app_id
+ * scope => perms splitted by ,
+ * after_init = function
+
+ * functions:
+ * login = function(after_login(user, insufficient_permissions)) // (check login status if not logged, then start login) return FB user (object) or not_authorized (string) or false (boolean)
+ * check_status = function(callback) //check if user is logged in (user object or false)
+ * validatePermissions = function(callback) // check if app was installed and accepted all perms return ("insufficient_permissions", permsToPrompt) or (user object)
+ * load_pages_list = function(callback) // return user fan pages
+ * install_tab = function(page, app_id, callback) // install app_id as tab on fan page
+ * install_tab_simple = function(tab_url, callback) //install current app in any fan pages from current user
+ * update_tab = function(page_id, app_id, params, callback) //update tab on a fanpage   (params: { "position": 3, "custom_name": "Newtabname" })
+ * shareFeedVideoFB = function(targetID, title, description, image_url, video_url, callbak)
+ * shareFeedPhotoFB = function(title, description, caption, link_app, url_picture, callback)
+ * shareFeedTextFB = function(title, description, link_app, callback)
+ * inviteFriendsFB = function(message, data, saveUrl, callback) //show friends list and then call to saveUrl with users id invited to save on database if necessary
+ * NEED JQUERY to use this library
+
+ Example:
+ face = new FaceOwen({app_id: 21312312321, scope: "publish_actions,email,manage_pages", after_init: after_ini})
+ function after_ini()
+ {
+     user = face.check_status();
+     if(!user)
+     face.login(after_login);
+     else
+     alert("you are logged" + user.name);
+ }
+
+ function after_login(user, insufficient_permissions)
+ {
+     if(user == "not_authorized")
+     {
+     alert("You need accept the application to access...");
+     }else if(user && insufficient_permissions)
+     {
+     alert("You need accept the follow permissions: "+insufficient_permissions.join(", "));
+     }
+     else if(user)
+     {
+     alert("logged successfully");
+     }
+     else
+     {
+     alert("you need to be logged in to continue");
+     }
+ }
